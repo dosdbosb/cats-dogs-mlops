@@ -5,7 +5,7 @@ import numpy as np
 from PIL import Image
 
 sys.path.insert(0, os.path.join(os.path.dirname(__file__), "..", "api"))
-from main import preprocess_image, interpret_prediction
+from main import preprocess_image, interpret_prediction  # noqa: E402
 
 
 def make_fake_image_bytes(size=(300, 300), color=(255, 0, 0)):

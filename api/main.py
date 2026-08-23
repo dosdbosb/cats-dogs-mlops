@@ -12,6 +12,7 @@ CLASS_NAMES = ["Cat", "Dog"]
 
 model = None
 
+
 @app.on_event("startup")
 def load_model():
     global model
