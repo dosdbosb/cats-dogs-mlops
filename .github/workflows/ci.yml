@@ -42,3 +42,21 @@ jobs:
 
       - name: Push Docker image to Docker Hub
         run: docker push ${{ secrets.DOCKERHUB_USERNAME }}/cats-dogs-api:latest
+
+  deploy:
+    needs: build-test-push
+    runs-on: self-hosted
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Pull latest image and restart service
+        run: |
+          docker-compose pull
+          docker-compose up -d
+
+      - name: Install smoke test dependencies
+        run: pip install requests pillow
+
+      - name: Run smoke tests
+        run: python3 smoke_test.py
