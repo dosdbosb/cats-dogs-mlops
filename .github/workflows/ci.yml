@@ -50,13 +50,11 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v4
 
-      - name: Pull latest image and restart service
-        run: |
-          docker-compose pull
-          docker-compose up -d
+      - name: Pull latest image from Docker Hub
+        run: docker-compose pull
 
-      - name: Install smoke test dependencies
-        run: pip install requests pillow
+      - name: Restart service with new image
+        run: docker-compose up -d
 
       - name: Run smoke tests
-        run: python3 smoke_test.py
+        run: ~/ai-env/bin/python smoke_test.py
