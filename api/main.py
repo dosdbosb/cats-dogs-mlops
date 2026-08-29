@@ -55,7 +55,7 @@ def interpret_prediction(raw_score: float) -> dict:
 
 @app.get("/health")
 def health():
-    return {"status": "ok", "model_loaded": model is not None}
+    return {"status": "ok", "model_loaded": model is not None, "version": "1.1"}
 
 
 @app.get("/metrics")
